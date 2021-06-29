@@ -1,7 +1,18 @@
 import random
+import sys
+import subprocess
 
 
-import requests
+def pip_install(module: str):
+    subprocess.run([sys.executable, "-m", "pip", "-q", "--disable-pip-version-check", "install", module])
+
+
+try:
+    import requests
+except:
+    print("'requests' module not found! Trying to install... ")
+    pip_install("requests")
+    import requests
 
 
 def print_header():
